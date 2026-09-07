@@ -1,0 +1,1 @@
+.model-card p,.model-card b{display:none}.model-card:has(p):after{content:'Evaluation details coming soon';display:block;margin-top:16px;color:var(--muted);font-size:12px}.dataset-board>.case-empty{display:none}.dataset-board:has(>.case-empty):after{content:'Dataset details coming soon.';display:block;color:var(--muted);font-size:12px}

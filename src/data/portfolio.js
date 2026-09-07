@@ -11,6 +11,7 @@ export const portfolio = {
     github: 'https://github.com/Nagendrakushwaha',
     email: 'shibbuk707@gmail.com',
     linkedin: 'https://www.linkedin.com/in/nagendra-kushwaha-165ba2296/',
+    resumeUrl: '/AI_ML%20resume.pdf',
   },
   navigation: ['About', 'Skills', 'Projects', 'Experience', 'Journey', 'Contact'],
   skills: [

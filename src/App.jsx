@@ -1,122 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { useEffect, useState } from 'react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { portfolio } from './data/portfolio'
+import { Home } from './pages/Home'
+import { Projects } from './pages/Projects'
+import { Skills } from './pages/Skills'
+import { ProjectCaseStudy } from './pages/ProjectCaseStudy'
 import './App.css'
+import './experience.css'
+import './profile.css'
+import './ai-visual.css'
+import './case-study.css'
+
+function getPath() { return window.location.pathname.replace(/\/$/, '') || '/' }
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  const [path, setPath] = useState(getPath)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = (nextPath) => { window.history.pushState({}, '', nextPath); setPath(getPath()); setMenuOpen(false); const hash = nextPath.includes('#') ? nextPath.split('#')[1] : ''; window.setTimeout(() => hash ? document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' }) : window.scrollTo({ top: 0, behavior: 'smooth' }), 0) }
+  useEffect(() => { const onPopState = () => setPath(getPath()); window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState) }, [])
+  const links = [{ label: 'Home', path: '/' }, { label: 'About', path: '/#about' }, { label: 'Skills', path: '/skills' }, { label: 'Projects', path: '/projects' }, { label: 'Experience', path: '/#experience' }, { label: 'Journey', path: '/#journey' }, { label: 'Contact', path: '/#contact' }]
+  const isActive = (link) => link.path === path || (link.path === '/' && path === '/') || (link.path.startsWith('/#') && window.location.hash === link.path.slice(1))
+  const projectId = path.startsWith('/projects/') ? path.split('/')[2] : null
+  return <div className="light-site"><header className="light-nav"><nav className="nav-inner"><button className="light-brand" onClick={() => navigate('/')}><span>NK</span><b>{portfolio.personal.name}</b></button><button className="mobile-menu" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button><div className={`light-nav-links ${menuOpen ? 'open' : ''}`}>{links.map((link) => <a className={isActive(link) ? 'active' : ''} href={link.path} key={link.label} onClick={(event) => { event.preventDefault(); navigate(link.path) }}>{link.label}</a>)}<a className="resume-nav" href="/resume/Nagendra_Kushwaha_AI_ML_Resume.pdf" target="_blank" rel="noreferrer">Resume <ArrowUpRight size={14} /></a></div></nav></header>{projectId ? <ProjectCaseStudy projectId={projectId} onNavigate={navigate} /> : path === '/projects' ? <Projects /> : path === '/skills' ? <Skills /> : <Home onNavigate={navigate} />}<footer className="light-footer"><span className="footer-mark">NK</span><div><strong>Nagendra Kushwaha</strong><small>AI / ML Engineer &amp; Data Scientist · Bhopal, India</small></div><div className="footer-links"><a href={portfolio.personal.github} target="_blank" rel="noreferrer">GitHub</a><a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={`mailto:${portfolio.personal.email}`}>Email</a><a href="/resume/Nagendra_Kushwaha_AI_ML_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></div><span>© 2026</span></footer></div>
 }
 
 export default App

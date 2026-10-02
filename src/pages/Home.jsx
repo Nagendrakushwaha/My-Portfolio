@@ -1,23 +1,227 @@
-import { ArrowDownRight, ArrowUpRight, Code2, Download } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowDownRight, ArrowUpRight, Beaker, Code2, Download, ExternalLink, FileText, Mail, Sparkles, Terminal } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
 import { ProjectsPreview } from './Projects'
+import { InteractiveNeuralCanvas } from '../components/InteractiveNeuralCanvas'
+import { PersonalizationBar } from '../components/PersonalizationBar'
+import { EngineeringIdentity } from '../components/EngineeringIdentity'
+import { TechStackExplorer } from '../components/TechStackExplorer'
+import { LiveMLLab } from '../components/LiveMLLab'
+import { EngineeringAnalytics } from '../components/EngineeringAnalytics'
+import { PortfolioAIAssistant } from '../components/PortfolioAIAssistant'
+import { EngineeringTimeline } from '../components/EngineeringTimeline'
+import { CodeRepositories } from '../components/CodeRepositories'
 
-function AIVisual() {
-  return <div className="hero-visual-wrap"><div className="profile-frame"><img src="/profile.png" alt="Nagendra Kushwaha" onError={(event) => { event.currentTarget.style.display = 'none'; event.currentTarget.nextElementSibling?.removeAttribute('hidden') }} /><div className="profile-missing" hidden>NK</div></div><div className="ai-image-frame"><img src="/ai-visual.png" alt="AI core connected to ML, NLP, LLM, data, DL, and RAG" onError={(event) => { event.currentTarget.style.display = 'none'; event.currentTarget.nextElementSibling?.removeAttribute('hidden') }} /><div className="ai-image-missing" hidden>AI / ML systems</div></div></div>
+function GithubIcon({ size = 15 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </svg>
+  )
 }
 
-function SectionTitle({ number, title, copy }) { return <div className="section-title"><span className="section-number">{number}</span><div><h2>{title}</h2>{copy && <p>{copy}</p>}</div></div> }
+function LinkedinIcon({ size = 15 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  )
+}
 
-const preferredCareerFields = ['AI/ML Engineer', 'Machine Learning Engineer', 'Data Scientist', 'Generative AI Engineer', 'LLM Engineer', 'NLP Engineer']
+function SectionTitle({ number, title, copy }) {
+  return (
+    <div className="section-title">
+      <span className="section-number">{number}</span>
+      <div>
+        <h2>{title}</h2>
+        {copy && <p>{copy}</p>}
+      </div>
+    </div>
+  )
+}
 
 export function Home({ onNavigate }) {
-  return <main>
-    <section className="light-hero content-width"><div className="hero-left"><p className="overline"><span className="orange-dot" /> AI / ML ENGINEER · B H O P A L, I N D I A</p><h1>Building intelligent systems with <em>AI</em>, Machine Learning, Deep Learning &amp; Generative AI.</h1><p className="hero-copy">I&apos;m Nagendra Kushwaha, a Computer Science Engineering student passionate about Artificial Intelligence, Machine Learning, Data Science, and Generative AI. I build practical, data-driven intelligent systems and continuously explore modern AI technologies including Deep Learning, NLP, Transformers, LLMs, and RAG.</p><div className="hero-buttons"><a className="accent-button" href="#projects" onClick={(event) => { event.preventDefault(); onNavigate('/projects') }}>View projects <ArrowUpRight size={16} /></a><a className="soft-button" href="#skills" onClick={(event) => { event.preventDefault(); onNavigate('/skills') }}>Explore skills</a><a className="text-button" href={portfolio.personal.github} target="_blank" rel="noreferrer"><Code2 size={16} /> GitHub</a><a className="text-button" href={portfolio.personal.resumeUrl} target="_blank" rel="noreferrer"><Download size={16} /> Resume</a></div><div className="hero-note"><span>01</span><span>Learning by building</span><span>Scroll to explore <ArrowDownRight size={15} /></span></div></div><AIVisual /></section>
-    <section className="light-band content-width" id="about"><SectionTitle number="01" title="A builder at the intersection of data and intelligence." copy="Strong foundations, useful artifacts, and an honest eye on what comes next." /><div className="home-about-grid"><p>I build machine learning and AI systems across data analysis, recommendation systems, NLP, deep learning, and generative AI. My focus is understanding the complete workflow, from data preparation and model development to evaluation and practical deployment.</p><div className="mini-facts"><div><span>Studying</span><b>B.Tech in Computer Science Engineering</b><small>{portfolio.personal.university}</small></div><div><span>Focus</span><b>Machine Learning · Deep Learning · NLP</b><small>Generative AI · LLM applications</small></div></div></div><div className="preferred-fields"><div className="preferred-fields-heading"><span>01 / Direction</span><h3>Preferred Career Fields</h3></div><div className="preferred-fields-grid">{preferredCareerFields.map((field) => <span key={field}>{field}</span>)}</div></div></section>
-    <section className="home-projects content-width" id="projects"><div className="section-heading-row"><SectionTitle number="02" title="Selected work." copy="A few projects from the path so far." /><button className="text-button" onClick={() => onNavigate('/projects')}>View all projects <ArrowUpRight size={16} /></button></div><ProjectsPreview onDetails={(project) => onNavigate(`/projects/${project.id}`)} /></section>
-    <section className="light-band content-width" id="skills"><div className="section-heading-row"><SectionTitle number="03" title="A toolkit in progress." copy="Capabilities are represented as working knowledge, not inflated percentages." /><button className="text-button" onClick={() => onNavigate('/skills')}>View all skills <ArrowUpRight size={16} /></button></div><div className="skill-preview-row">{portfolio.skills.slice(0, 6).map((item) => <span key={item.name}><b>{item.name}</b><small>{item.level}</small></span>)}</div></section>
-    <section className="experience-home content-width" id="experience"><SectionTitle number="04" title="Learning in public, building in practice." copy="Experience that keeps the technical work grounded." /><div className="experience-home-grid">{portfolio.experience.map((item) => <article className="experience-item" key={item.company}><span>{item.date}</span><h3>{item.role}</h3><b>{item.company}</b><p>{item.details}</p></article>)}<article className="education-home"><span>Education</span><h3>B.Tech — Computer Science Engineering</h3><p>{portfolio.personal.university}</p><div><b>7.85 / 10</b><small>CGPA · 3rd Year / 6th Semester</small></div></article></div></section>
-    <section className="journey-home content-width" id="journey"><SectionTitle number="05" title="One layer at a time." copy="Python and data first. Intelligent applications next." /><div className="journey-line">{portfolio.journey.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, '0')}</i><b>{step}</b></span>)}</div><div className="explore-strip"><span className="overline">Currently exploring</span><p>{portfolio.exploring.slice(0, 6).map((topic, index) => <span className="explore-topic" key={topic}><b>{topic}</b>{index < 5 && '  ·  '}</span>)}</p></div></section>
-    <section className="light-contact content-width" id="contact"><div><p className="overline">06 / Contact</p><h2>Let&apos;s build<br /><em>something intelligent.</em></h2><p className="contact-copy">Open to opportunities, collaborations, and interesting AI/ML projects.</p></div><div className="contact-panel"><a href={`mailto:${portfolio.personal.email}`}>Email me / {portfolio.personal.email} <ArrowUpRight size={16} /></a><a href={portfolio.personal.github} target="_blank" rel="noreferrer">GitHub / Nagendrakushwa <ArrowUpRight size={16} /></a><a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">LinkedIn / Nagendra Kushwaha <ArrowUpRight size={16} /></a><a href={portfolio.personal.resumeUrl} target="_blank" rel="noreferrer">Resume / View PDF <ArrowUpRight size={16} /></a></div></section>
-  </main>
+  const [currentPerspective, setCurrentPerspective] = useState('all')
+
+  return (
+    <main className="ultra-home">
+      {/* 1. HERO SECTION WITH 3D NEURAL CANVAS */}
+      <section className="light-hero content-width" id="hero">
+        <div className="hero-left">
+          <div className="hero-telemetry-badge">
+            <span className="live-dot" />
+            <span>AI / ML ENGINEER · DATA SCIENTIST · BHOPAL, INDIA</span>
+          </div>
+
+          <h1>
+            Building Intelligent Systems with
+            <br />
+            <em>Machine Learning, Deep Learning</em>
+            <br />
+            &amp; Generative AI.
+          </h1>
+
+          <p className="hero-copy">
+            I&apos;m <strong>Nagendra Kushwaha</strong>, a Computer Science Engineering student (7.85 CGPA) building verified, production-ready machine learning architectures. My work spans deep computer vision (EfficientNet 93.6% accuracy on RSNA), conversational AI (Banking77 88.72% test accuracy with RAG), and high-throughput network anomaly detection (2M+ CIC-IDS2017 rows).
+          </p>
+
+          <div className="hero-buttons">
+            <a
+              className="accent-button"
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault()
+                onNavigate('/projects')
+              }}
+            >
+              Explore Project Lab <ArrowUpRight size={16} />
+            </a>
+
+            <a
+              className="soft-button"
+              href="#mllab"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById('mllab')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              <Beaker size={15} /> Try Live ML Demos
+            </a>
+
+            <a
+              className="text-button"
+              href={portfolio.personal.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Download size={15} /> Resume PDF
+            </a>
+
+            <a
+              className="text-button"
+              href={portfolio.personal.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Code2 size={15} /> GitHub
+            </a>
+          </div>
+
+          <div className="hero-telemetry-strip">
+            <div className="telemetry-item">
+              <span>Primary Stack</span>
+              <strong>Python · PyTorch · FastAPI</strong>
+            </div>
+            <div className="telemetry-item">
+              <span>Benchmark Max</span>
+              <strong>99.6% Acc (NIDS) · 93.6% (RSNA)</strong>
+            </div>
+            <div className="telemetry-item">
+              <span>Deployment</span>
+              <strong>FastAPI + Render + Streamlit</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* Right 3D Visual Mesh with Integrated Profile */}
+        <div className="hero-right-visual hero-visual-wrap">
+          <div className="profile-frame">
+            <img src="/profile.png" alt="Nagendra Kushwaha — AI/ML Engineer" />
+          </div>
+          <InteractiveNeuralCanvas />
+        </div>
+      </section>
+
+      {/* 2. PERSONALIZATION EXPERIENCE BAR */}
+      <section className="personalization-section content-width">
+        <PersonalizationBar
+          currentPerspective={currentPerspective}
+          onSelectPerspective={setCurrentPerspective}
+        />
+      </section>
+
+      {/* 3. AI ENGINEERING IDENTITY & LIFECYCLE MINDSET */}
+      <EngineeringIdentity onNavigate={onNavigate} />
+
+      {/* 4. INTERACTIVE TECH STACK */}
+      <TechStackExplorer onNavigate={onNavigate} />
+
+      {/* 5. FEATURED PROJECTS SECTION */}
+      <section className="home-projects content-width" id="projects">
+        <div className="section-heading-row">
+          <SectionTitle
+            number="04"
+            title="Featured Engineering Systems."
+            copy="Flagship implementations across Generative AI, Medical Computer Vision, Document AI, and Intrusion Detection."
+          />
+          <button className="text-button" onClick={() => onNavigate('/projects')}>
+            View All 9 Projects <ArrowUpRight size={16} />
+          </button>
+        </div>
+
+        <ProjectsPreview
+          filterPersona={currentPerspective}
+          onDetails={(project) => onNavigate(`/projects/${project.id}`)}
+        />
+      </section>
+
+      {/* 6. LIVE ML LAB & MODEL INFERENCE PLAYGROUND */}
+      <LiveMLLab onNavigate={onNavigate} />
+
+      {/* 7. REAL ENGINEERING ANALYTICS DASHBOARD */}
+      <EngineeringAnalytics />
+
+      {/* 8. AI ASSISTANT: ASK MY PORTFOLIO */}
+      <PortfolioAIAssistant onNavigate={onNavigate} />
+
+      {/* 9. ENGINEERING TIMELINE & VERIFIED MILESTONES */}
+      <EngineeringTimeline />
+
+      {/* 10. GITHUB & OPEN SOURCE CODEBASES */}
+      <CodeRepositories />
+
+      {/* 11. CONTACT & COLLABORATION CTA */}
+      <section className="light-contact content-width" id="contact">
+        <div>
+          <p className="overline">
+            <Sparkles size={12} className="orange-dot-icon" /> 11 / Contact &amp; Opportunities
+          </p>
+          <h2>
+            Let&apos;s build
+            <br />
+            <em>intelligent systems.</em>
+          </h2>
+          <p className="contact-copy">
+            Available for AI/ML Engineer roles, Data Science opportunities, research collaborations, and production intelligent software projects.
+          </p>
+          <div className="contact-quick-badges">
+            <span>Bhopal, Madhya Pradesh, India</span>
+            <span>Open to Remote &amp; On-Site</span>
+          </div>
+        </div>
+
+        <div className="contact-panel">
+          <a href={`mailto:${portfolio.personal.email}`}>
+            <span className="contact-label"><Mail size={15} /> Direct Email</span>
+            <strong>{portfolio.personal.email} <ArrowUpRight size={16} /></strong>
+          </a>
+          <a href={portfolio.personal.github} target="_blank" rel="noreferrer">
+            <span className="contact-label"><GithubIcon size={15} /> GitHub Profile</span>
+            <strong>github.com/Nagendrakushwaha <ArrowUpRight size={16} /></strong>
+          </a>
+          <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">
+            <span className="contact-label"><LinkedinIcon size={15} /> LinkedIn</span>
+            <strong>Nagendra Kushwaha <ArrowUpRight size={16} /></strong>
+          </a>
+          <a href={portfolio.personal.resumeUrl} target="_blank" rel="noreferrer">
+            <span className="contact-label"><FileText size={15} /> Resume PDF</span>
+            <strong>Download AI/ML Resume <ArrowUpRight size={16} /></strong>
+          </a>
+        </div>
+      </section>
+    </main>
+  )
 }

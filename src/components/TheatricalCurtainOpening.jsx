@@ -87,7 +87,7 @@ export function TheatricalCurtainOpening({ isOpen, onComplete }) {
       <div className="curtain-pelmet">
         <div className="pelmet-fringe" />
         <div className="pelmet-crest-tape">
-          <span className="pelmet-text">NAGENDRA KUSHWAHA · PORTFOLIO PREMIERE · SAM GLOBAL UNIVERSITY · 2026</span>
+          <span className="pelmet-text">NAGENDRA KUSHWAHA · PORTFOLIO PREMIERE · AI &amp; ML ARCHITECT · 2026</span>
         </div>
       </div>
 
@@ -171,13 +171,6 @@ export function TheatricalCurtainOpening({ isOpen, onComplete }) {
           <h1 className="narrative-title">NAGENDRA KUSHWAHA</h1>
           <p className="narrative-role">AI / ML ENGINEER &amp; DATA SCIENTIST</p>
 
-          <div className="curtain-academic-badge">
-            <span className="badge-ico">🎓</span>
-            <div className="badge-info">
-              <strong>Sam Global University, Bhopal</strong>
-              <span>B.Tech Computer Science Engineering · 7.85 / 10 CGPA</span>
-            </div>
-          </div>
 
           <div className="curtain-proof-pills">
             <span className="proof-pill pill-azure">UptoSkill Intern</span>

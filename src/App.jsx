@@ -8,6 +8,9 @@ import { ProjectCaseStudy } from './pages/ProjectCaseStudy'
 import { CommandPalette } from './components/CommandPalette'
 import { CustomCursor } from './components/CustomCursor'
 import { TheatricalCurtainOpening } from './components/TheatricalCurtainOpening'
+import { GiatsFooter } from './components/GiatsFooter'
+import { GiatsPreFooter } from './components/GiatsPreFooter'
+import { GiatsScrollbar } from './components/GiatsScrollbar'
 import { synth } from './utils/audioSynth'
 import './App.css'
 import './experience.css'
@@ -16,6 +19,7 @@ import './ai-visual.css'
 import './case-study.css'
 import './quality-overrides.css'
 import './footer.css'
+import './components/motion/motion.css'
 import './preferred-fields.css'
 import './ultra-premium.css'
 import './cinematic-elevation.css'
@@ -112,6 +116,9 @@ function App() {
     <div className="cinematic-site-root">
       {/* Magnetic Fluid Cursor */}
       <CustomCursor />
+
+      {/* Giats-Inspired Minimal HUD Scroll Indicator */}
+      <GiatsScrollbar />
 
       {/* Theatrical Curtain Entrance (Parting Curtains like the Reference Video) */}
       <TheatricalCurtainOpening
@@ -254,79 +261,11 @@ function App() {
         <Home onNavigate={navigate} />
       )}
 
-      {/* Ultra-Premium Cinematic Footer */}
-      <footer className="cinematic-footer">
-        <div className="footer-inner">
-          <div className="footer-main">
-            <div className="footer-intro">
-              <span className="footer-mark">NK</span>
-              <h2>Nagendra Kushwaha</h2>
-              <p>
-                AI/ML Engineer <span>•</span> Data Scientist <span>•</span> Generative AI Developer
-              </p>
-              <small>
-                Building verified, production-ready intelligent systems with Machine Learning, Deep Learning, Computer Vision &amp; Generative AI.
-              </small>
-            </div>
+      {/* Giats-Inspired Pre-Footer Interactive Section */}
+      <GiatsPreFooter onNavigate={navigate} />
 
-            <div className="footer-cta">
-              <p>Ready to engineer intelligent systems?</p>
-              <nav className="footer-links" aria-label="Footer links">
-                <a
-                  href={portfolio.personal.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  onMouseEnter={() => synth.playHover()}
-                  onClick={() => synth.playClick()}
-                >
-                  GitHub <ArrowUpRight size={14} />
-                </a>
-                <a
-                  href={portfolio.personal.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  onMouseEnter={() => synth.playHover()}
-                  onClick={() => synth.playClick()}
-                >
-                  LinkedIn <ArrowUpRight size={14} />
-                </a>
-                <a
-                  href={`mailto:${portfolio.personal.email}`}
-                  onMouseEnter={() => synth.playHover()}
-                  onClick={() => synth.playClick()}
-                >
-                  Email <ArrowUpRight size={14} />
-                </a>
-                <a
-                  href={portfolio.personal.resumeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onMouseEnter={() => synth.playHover()}
-                  onClick={() => synth.playClick()}
-                >
-                  Resume PDF <ArrowUpRight size={14} />
-                </a>
-              </nav>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <span>© 2026 Nagendra Kushwaha · Sam Global University, Bhopal</span>
-            <span>Grounded in verified project datasets and model evaluations</span>
-            <button
-              type="button"
-              className="back-to-top-btn"
-              onClick={() => {
-                synth.playClick()
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
-              onMouseEnter={() => synth.playHover()}
-            >
-              Back to top <ArrowUp size={14} />
-            </button>
-          </div>
-        </div>
-      </footer>
+      {/* Giats-Inspired Ultra-Premium Architectural Footer */}
+      <GiatsFooter onNavigate={navigate} />
     </div>
   )
 }

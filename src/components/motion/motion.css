@@ -1,0 +1,363 @@
+/* ==========================================================================
+   GIATS-INSPIRED MOTION & KINETIC ANIMATION SYSTEM
+   ========================================================================== */
+
+:root {
+  --giats-fill: #f2ffbd;
+  --giats-dark: #121417;
+  --giats-charcoal: #1a1e23;
+  --giats-bone: #f0f4f1;
+  --giats-accent: #ec6b3e;
+}
+
+/* --------------------------------------------------------------------------
+   1. AppearTitle & Staggered In-View Text Reveal
+   -------------------------------------------------------------------------- */
+.appear-title-container {
+  display: block;
+  overflow: hidden;
+}
+
+.appear-title-container > * {
+  transform: translateY(105%) skewY(1.5deg);
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(75ms * var(--i, 0));
+  will-change: transform, opacity;
+}
+
+.appear-title-container.is-visible > * {
+  transform: translateY(0) skewY(0);
+  opacity: 1;
+}
+
+.appear-title-footer {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.appear-title-footer > * {
+  transform: translateY(105%) skewY(1deg);
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease-out;
+  transition-delay: calc(90ms * var(--i, 0));
+}
+
+.appear-title-footer.is-visible > * {
+  transform: translateY(0) skewY(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. Perspective 3D Flip Text (rotateX 90deg on hover)
+   -------------------------------------------------------------------------- */
+.perspective-text-root {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  line-height: 1.2;
+  perspective: 800px;
+  cursor: pointer;
+}
+
+.perspective-text-inner {
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.1, 1);
+  position: relative;
+}
+
+.perspective-text-root:hover .perspective-text-inner {
+  transform: rotateX(90deg);
+}
+
+.perspective-text-face-1 {
+  display: inline-block;
+  transform: translateZ(0.6em);
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.perspective-text-face-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-origin: bottom center;
+  transform: rotateX(-90deg) translateZ(0.6em);
+  opacity: 0;
+  color: var(--giats-fill, #f2ffbd);
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.perspective-text-root:hover .perspective-text-face-2 {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   3. Infinite Marquee Ticker (InfiniteText)
+   -------------------------------------------------------------------------- */
+.infinite-text-marquee {
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  position: relative;
+  padding: 18px 0;
+  white-space: nowrap;
+}
+
+.infinite-text-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: infinite-marquee-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+.infinite-text-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes infinite-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.hero-infinite-strip {
+  width: 100%;
+  background: #111317;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 40px 0 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.infinite-text-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 28px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(14px, 1.6vw, 24px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--giats-bone, #f0f4f1);
+}
+
+.infinite-text-item.item-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240, 244, 241, 0.35);
+}
+
+.infinite-text-sep {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--giats-accent, #ec6b3e);
+  margin-left: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Directional LinkText (Rotating SVG Arrow on hover)
+   -------------------------------------------------------------------------- */
+.giats-link-text {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  color: #c5cec9;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.giats-link-text:hover {
+  color: #ffffff;
+}
+
+.giats-link-content {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.giats-link-arrow {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  stroke: currentColor;
+  transform: rotate(-90deg) translate3d(0, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.1, 1), fill 0.3s ease;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.giats-link-text:hover .giats-link-arrow {
+  transform: rotate(-150deg) translate3d(4px, 0, 0);
+  fill: var(--giats-fill, #f2ffbd);
+  stroke: var(--giats-fill, #f2ffbd);
+}
+
+.giats-link-label {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.giats-link-text:hover .giats-link-label {
+  transform: translate3d(4px, 0, 0);
+}
+
+/* --------------------------------------------------------------------------
+   5. ButtonLink with Expanding Radial Magnetic Fill
+   -------------------------------------------------------------------------- */
+.giats-button-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.giats-btn-posnawr {
+  position: relative;
+  overflow: hidden;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background-color: var(--giats-charcoal, #1a1e23);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--giats-bone, #f0f4f1);
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.giats-btn-posnawr .btn-ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: var(--giats-fill, #f2ffbd);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.1, 1), height 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.giats-btn-posnawr:hover {
+  border-color: rgba(242, 255, 189, 0.5);
+  color: #121417;
+}
+
+.giats-btn-posnawr:hover .btn-ball {
+  width: 280px;
+  height: 280px;
+}
+
+.giats-btn-posnawr .btn-label {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.giats-btn-posnawr:hover .btn-label {
+  transform: translate3d(-3px, 0, 0);
+}
+
+.giats-btn-posnawr .btn-arrow {
+  position: relative;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  transform: rotate(-90deg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.giats-btn-posnawr:hover .btn-arrow {
+  transform: rotate(-150deg) translate3d(2px, 0, 0);
+}
+
+/* --------------------------------------------------------------------------
+   6. Magnetic Circle "Go Top" Button
+   -------------------------------------------------------------------------- */
+.giats-circle-button {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--giats-bone, #f0f4f1);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 3;
+}
+
+.giats-circle-button:hover {
+  transform: scale(1.08);
+}
+
+.giats-circle-button .circle-ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: var(--giats-fill, #f2ffbd);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.1, 1), height 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.giats-circle-button:hover .circle-ball {
+  width: 160px;
+  height: 160px;
+}
+
+.giats-circle-button .circle-arrow {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  fill: #121417;
+  stroke: #121417;
+  transform: rotate(180deg);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.1, 1), fill 0.3s ease;
+}
+
+.giats-circle-button:hover .circle-arrow {
+  transform: rotate(180deg) translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .giats-circle-button {
+    width: 48px;
+    height: 48px;
+  }
+}

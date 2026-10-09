@@ -1,1 +1,572 @@
-.light-footer{position:relative;max-width:none;margin-top:0;padding:0 32px;background:#111315;color:#f8f7f2;overflow:hidden}.light-footer:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 78% 12%,rgba(236,107,62,.16),transparent 34%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,56px 56px,56px 56px;mask-image:linear-gradient(135deg,#000,transparent 78%)}.footer-inner{position:relative;max-width:var(--max);margin:0 auto}.footer-main{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:80px;padding:92px 0 76px}.footer-intro{max-width:600px}.footer-intro .footer-mark{width:42px;height:42px;margin-bottom:28px;background:var(--accent);color:#111315;font-size:12px}.footer-intro h2{margin:0;font:600 clamp(34px,4vw,58px)/1.02 'Space Grotesk';letter-spacing:-1.5px}.footer-intro p{margin:20px 0 0;color:#c9cfcc;font:500 14px/1.6 'Space Grotesk'}.footer-intro p span{padding:0 6px;color:var(--accent)}.footer-intro small{display:block;max-width:420px;margin-top:35px;color:#87918f;font-size:14px;line-height:1.7}.footer-cta{align-self:end}.footer-cta>p{max-width:300px;margin:0 0 28px;font:500 clamp(24px,3vw,38px)/1.1 'Space Grotesk';letter-spacing:-.6px}.footer-links{display:flex;flex-direction:column;align-items:flex-start;gap:14px}.footer-links a{display:inline-flex;align-items:center;gap:8px;color:#c9cfcc;font:600 13px 'Space Grotesk';transition:color .2s,transform .2s}.footer-links a svg{color:var(--accent);transition:transform .2s}.footer-links a:hover{color:#fff;transform:translateX(4px)}.footer-links a:hover svg{transform:translate(3px,-3px)}.footer-bottom{display:flex;align-items:center;gap:26px;padding:21px 0 25px;border-top:1px solid rgba(255,255,255,.13);color:#7f8987;font:10px 'Space Grotesk';letter-spacing:.2px}.footer-bottom button{display:inline-flex;align-items:center;gap:7px;margin-left:auto;padding:0;border:0;background:none;color:#c9cfcc;font:600 11px 'Space Grotesk';transition:color .2s}.footer-bottom button svg{color:var(--accent);transition:transform .2s}.footer-bottom button:hover{color:#fff}.footer-bottom button:hover svg{transform:translateY(-3px)}@media(max-width:900px){.footer-main{grid-template-columns:1fr 1fr;gap:40px;padding:72px 0 60px}}@media(max-width:680px){.light-footer{padding:0 20px}.footer-main{display:block;padding:62px 0 55px}.footer-intro h2{font-size:39px}.footer-intro small{margin-top:27px}.footer-cta{margin-top:52px}.footer-cta>p{font-size:29px}.footer-links{gap:17px}.footer-links a{font-size:14px}.footer-bottom{align-items:flex-start;flex-direction:column;gap:9px;padding:20px 0 25px}.footer-bottom button{margin:10px 0 0}.footer-mark{margin-right:0!important}}
+/* ==========================================================================
+   GIATS-INSPIRED ARCHITECTURAL FOOTER, PREFOOTER & HUD SCROLLBAR
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. GIATS PREFOOTER SECTION
+   -------------------------------------------------------------------------- */
+.giats-prefooter-root {
+  position: relative;
+  width: 100%;
+  background: #15181c;
+  color: #f0f4f1;
+  padding: 100px 32px 90px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.giats-prefooter-root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 50% 0%, rgba(242, 255, 189, 0.08), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: auto, 48px 48px, 48px 48px;
+}
+
+.giats-prefooter-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.prefooter-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(242, 255, 189, 0.08);
+  border: 1px solid rgba(242, 255, 189, 0.25);
+  color: #f2ffbd;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.prefooter-sparkle {
+  color: #f2ffbd;
+}
+
+.prefooter-heading-wrap {
+  margin-bottom: 24px;
+}
+
+.prefooter-h1 {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(34px, 5.2vw, 68px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: #f0f4f1;
+}
+
+.prefooter-highlight {
+  color: #f2ffbd;
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 255, 189, 0.35);
+  text-underline-offset: 8px;
+}
+
+.prefooter-subtitle {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.7;
+  color: #9aa5a1;
+}
+
+/* Interactive Matrix Stamps */
+.prefooter-interactive-canvas {
+  width: 100%;
+  max-width: 960px;
+  background: rgba(18, 20, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px 28px 32px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 48px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.canvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: #7b8884;
+}
+
+.canvas-header-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3f765f;
+}
+
+.canvas-header small {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.prefooter-stamps-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.prefooter-stamp {
+  position: relative;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #1e2228;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.prefooter-stamp:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+  border-color: #f2ffbd;
+  background: #252b33;
+  z-index: 5;
+  box-shadow: 0 8px 24px rgba(242, 255, 189, 0.15);
+}
+
+.stamp-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stamp-icon {
+  font-size: 20px;
+}
+
+.stamp-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.stamp-meta strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.stamp-meta small {
+  font-size: 10px;
+  color: #8c9794;
+}
+
+.prefooter-stamp.is-sliced {
+  opacity: 0.8;
+  border-style: dashed;
+  border-color: #ec6b3e;
+}
+
+.stamp-cut-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 48%, rgba(236, 107, 62, 0.8) 50%, transparent 52%);
+}
+
+.prefooter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   2. GIATS ULTRA-PREMIUM FOOTER
+   -------------------------------------------------------------------------- */
+.giats-footer-root {
+  position: relative;
+  width: 100%;
+  background: #0d0f12;
+  color: #f0f4f1;
+  padding: 90px 32px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.giats-footer-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 85% 20%, rgba(236, 107, 62, 0.12), transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: auto, 56px 56px, 56px 56px;
+}
+
+.giats-footer-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Top 3-Column Grid */
+.giats-footer-top-grid {
+  display: grid;
+  grid-template-columns: 220px 220px 1fr;
+  gap: 60px;
+  padding-bottom: 70px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.giats-col-title {
+  margin: 0 0 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #838e8a;
+}
+
+.giats-links-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Work With Me / Email Column */
+.giats-email-col {
+  padding-left: 20px;
+}
+
+.giats-work-title {
+  color: #f2ffbd;
+  margin-bottom: 14px;
+}
+
+.giats-email-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding-bottom: 8px;
+}
+
+.giats-email-link {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 2.7vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.giats-email-link:hover {
+  color: #f2ffbd;
+}
+
+/* Signature Giats Animated Wavy SVG Path Underline */
+.giats-wavy-graphic {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  pointer-events: none;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 0.05em;
+  transition: transform 0.75s cubic-bezier(0, 0.25, 0.5, 1);
+  will-change: transform;
+}
+
+.giats-email-link:hover .giats-wavy-graphic {
+  transform: translate3d(-65.5%, 0, 0);
+  stroke: #f2ffbd;
+}
+
+.giats-email-subtext {
+  max-width: 440px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #8b9693;
+}
+
+/* Middle Telemetry Strip */
+.giats-footer-middle-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 1fr;
+  gap: 40px;
+  padding: 32px 0 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.giats-middle-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.middle-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6c7875;
+  margin-bottom: 8px;
+}
+
+.middle-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #c0c8c5;
+}
+
+.middle-desc small {
+  color: #7d8985;
+  font-size: 11px;
+}
+
+.giats-middle-right {
+  text-align: right;
+}
+
+.giats-middle-right .middle-desc {
+  align-items: flex-end;
+}
+
+/* Live Time Widget */
+.giats-live-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #f2ffbd;
+}
+
+.live-clock-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f2ffbd;
+  box-shadow: 0 0 10px #f2ffbd;
+  animation: clock-pulse 1.5s infinite;
+}
+
+@keyframes clock-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-green-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+  animation: green-pulse 2s infinite;
+}
+
+@keyframes green-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.availability-desc {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. GIANT ARCHITECTURAL TYPOGRAPHY & GOTOP BUTTON
+   -------------------------------------------------------------------------- */
+.giats-footer-bottom-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 32px;
+  position: relative;
+}
+
+.giats-giant-brand {
+  line-height: 0.85;
+  user-select: none;
+  overflow: hidden;
+}
+
+.giant-brand-text {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(64px, 14vw, 190px);
+  font-weight: 800;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  color: #1a1e24;
+  -webkit-text-stroke: 1px rgba(240, 244, 241, 0.22);
+  transition: color 0.4s ease, -webkit-text-stroke 0.4s ease, transform 0.4s ease;
+  transform: translateY(8px);
+}
+
+.giats-giant-brand:hover .giant-brand-text {
+  color: #f0f4f1;
+  -webkit-text-stroke: 1px #f0f4f1;
+}
+
+.giats-gotop-container {
+  padding-bottom: 24px;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. GIATS HUD SCROLLBAR INDICATOR
+   -------------------------------------------------------------------------- */
+.giats-hud-scrollbar {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 260px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.giats-hud-scrollbar.is-visible {
+  opacity: 1;
+}
+
+.scrollbar-track {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: var(--giats-fill, #f2ffbd);
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(242, 255, 189, 0.6);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE MEDIA QUERIES
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .giats-footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .giats-email-col {
+    grid-column: span 2;
+    padding-left: 0;
+  }
+
+  .giats-footer-middle-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .giats-middle-right {
+    grid-column: span 2;
+    text-align: left;
+  }
+
+  .giats-middle-right .middle-desc {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .giats-prefooter-root {
+    padding: 70px 20px 60px;
+  }
+
+  .giats-footer-root {
+    padding: 60px 20px 30px;
+  }
+
+  .giats-footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 40px;
+  }
+
+  .giats-email-col {
+    grid-column: auto;
+  }
+
+  .giats-footer-middle-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 0;
+  }
+
+  .giats-middle-right {
+    grid-column: auto;
+  }
+
+  .giats-footer-bottom-row {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .giats-gotop-container {
+    align-self: flex-end;
+    padding-bottom: 0;
+  }
+
+  .giant-brand-text {
+    font-size: clamp(48px, 18vw, 96px);
+  }
+}

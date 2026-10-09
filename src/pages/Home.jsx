@@ -13,6 +13,8 @@ import { EngineeringTimeline } from '../components/EngineeringTimeline'
 import { CodeRepositories } from '../components/CodeRepositories'
 import { SceneTracker } from '../components/SceneTracker'
 import { synth } from '../utils/audioSynth'
+import { AppearTitle } from '../components/motion/AppearTitle'
+import { InfiniteText } from '../components/motion/InfiniteText'
 
 function GithubIcon({ size = 15 }) {
   return (
@@ -37,10 +39,10 @@ function SectionTitle({ number, title, copy }) {
   return (
     <div className="section-title">
       <span className="section-number">{number}</span>
-      <div>
+      <AppearTitle>
         <h2>{title}</h2>
         {copy && <p>{copy}</p>}
-      </div>
+      </AppearTitle>
     </div>
   )
 }
@@ -327,6 +329,14 @@ export function Home({ onNavigate }) {
           )}
         </div>
       </section>
+
+      {/* Giats-Inspired Infinite Kinetic Marquee Ribbon */}
+      <div className="hero-infinite-strip" aria-hidden="true">
+        <InfiniteText
+          text="AI & ML ARCHITECTURES • REAL-TIME RAG • COMPUTER VISION • VERIFIED PRODUCTION BENCHMARKS • EXPLAINABLE GRAD-CAM"
+          length={4}
+        />
+      </div>
 
       {/* 2. PERSONALIZATION EXPERIENCE BAR */}
       <section className="personalization-section content-width">

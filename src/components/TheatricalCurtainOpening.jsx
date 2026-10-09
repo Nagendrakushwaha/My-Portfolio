@@ -78,9 +78,8 @@ export function TheatricalCurtainOpening({ isOpen, onComplete }) {
 
   return (
     <div
-      className={`theatrical-curtain-stage ${stage === 'opening' ? 'is-opening' : ''} ${
-        stage === 'opened' ? 'is-opened' : ''
-      }`}
+      className={`theatrical-curtain-stage ${stage === 'opening' ? 'is-opening' : ''} ${stage === 'opened' ? 'is-opened' : ''
+        }`}
       aria-hidden={stage === 'opened'}
     >
       {/* Top Pelmet / Valance Drapery Header */}

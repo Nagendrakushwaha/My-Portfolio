@@ -27,13 +27,20 @@
   --text-faint: #64748b;
 
   /* Multi-Color Text & Element Accents (Many Places with Distinct Colors) */
-  --accent-azure: #0284c7;     /* Azure Sky Blue - matches the video's bright sky! */
-  --accent-cyan: #0284c7;      /* Sky/Cyan alias */
-  --accent-ember: #ea580c;     /* Electric Flame Orange */
-  --accent-emerald: #059669;   /* Cyber Emerald Green (Live & 99.6% accuracy) */
-  --accent-purple: #7c3aed;    /* Royal Violet (GenAI & RAG) */
-  --accent-gold: #d97706;      /* Warm Gold (7.85 CGPA & Leaderboard #1) */
-  --accent-crimson: #e11d48;   /* Ruby Crimson (NIDS anomalies) */
+  --accent-azure: #0284c7;
+  /* Azure Sky Blue - matches the video's bright sky! */
+  --accent-cyan: #0284c7;
+  /* Sky/Cyan alias */
+  --accent-ember: #ea580c;
+  /* Electric Flame Orange */
+  --accent-emerald: #059669;
+  /* Cyber Emerald Green (Live & 99.6% accuracy) */
+  --accent-purple: #7c3aed;
+  /* Royal Violet (GenAI & RAG) */
+  --accent-gold: #d97706;
+  /* Warm Gold (7.85 CGPA & Leaderboard #1) */
+  --accent-crimson: #e11d48;
+  /* Ruby Crimson (NIDS anomalies) */
 
   /* Luxury Typography Pairing */
   --font-headline: 'Syne', 'Space Grotesk', -apple-system, sans-serif;
@@ -87,12 +94,10 @@ body::after {
   max-width: 1000px;
   max-height: 1000px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(2, 132, 199, 0.08) 0%,
-    rgba(234, 88, 12, 0.03) 38%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(2, 132, 199, 0.08) 0%,
+      rgba(234, 88, 12, 0.03) 38%,
+      transparent 70%);
   pointer-events: none;
   z-index: 0;
   filter: blur(80px);
@@ -151,9 +156,9 @@ body::after {
   align-items: center;
   justify-content: center;
   transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.2s ease,
-              background 0.2s ease;
+    height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s ease,
+    background 0.2s ease;
   will-change: transform;
 }
 
@@ -236,12 +241,10 @@ body::after {
   left: 0;
   right: 0;
   height: 6px;
-  background: repeating-linear-gradient(
-    90deg,
-    #d97706 0px,
-    #fbbf24 4px,
-    #b45309 8px
-  );
+  background: repeating-linear-gradient(90deg,
+      #d97706 0px,
+      #fbbf24 4px,
+      #b45309 8px);
   box-shadow: 0 2px 6px rgba(217, 119, 6, 0.5);
 }
 
@@ -301,14 +304,12 @@ body::after {
 .curtain-pleat {
   flex: 1;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(255, 255, 255, 0.06) 35%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(0, 0, 0, 0.45) 80%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(255, 255, 255, 0.06) 35%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(0, 0, 0, 0.45) 80%,
+      rgba(0, 0, 0, 0.7) 100%);
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -1023,8 +1024,15 @@ body::after {
   pointer-events: none;
 }
 
-.hero-corner-crosshair.top-left { top: 120px; left: 32px; }
-.hero-corner-crosshair.top-right { top: 120px; right: 32px; }
+.hero-corner-crosshair.top-left {
+  top: 120px;
+  left: 32px;
+}
+
+.hero-corner-crosshair.top-right {
+  top: 120px;
+  right: 32px;
+}
 
 .hero-telemetry-badge {
   display: inline-flex;
@@ -1059,9 +1067,20 @@ body::after {
 }
 
 @keyframes pulse-dot {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .hero-headline {
@@ -1123,11 +1142,31 @@ body::after {
   height: 6px;
   border-radius: 50%;
 }
-.pill-dot.emerald { background: var(--accent-emerald); box-shadow: 0 0 8px var(--accent-emerald); }
-.pill-dot.amber { background: var(--accent-ember); box-shadow: 0 0 8px var(--accent-ember); }
-.pill-dot.cyan { background: var(--accent-azure); box-shadow: 0 0 8px var(--accent-azure); }
-.pill-dot.purple { background: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple); }
-.pill-dot.gold { background: var(--accent-gold); box-shadow: 0 0 8px var(--accent-gold); }
+
+.pill-dot.emerald {
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+}
+
+.pill-dot.amber {
+  background: var(--accent-ember);
+  box-shadow: 0 0 8px var(--accent-ember);
+}
+
+.pill-dot.cyan {
+  background: var(--accent-azure);
+  box-shadow: 0 0 8px var(--accent-azure);
+}
+
+.pill-dot.purple {
+  background: var(--accent-purple);
+  box-shadow: 0 0 8px var(--accent-purple);
+}
+
+.pill-dot.gold {
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold);
+}
 
 .benchmark-pill strong {
   color: var(--text-pure);
@@ -1648,8 +1687,15 @@ body::after {
   pointer-events: none;
 }
 
-.section-crosshair.top-left { top: 0; left: 32px; }
-.section-crosshair.top-right { top: 0; right: 32px; }
+.section-crosshair.top-left {
+  top: 0;
+  left: 32px;
+}
+
+.section-crosshair.top-right {
+  top: 0;
+  right: 32px;
+}
 
 /* --------------------------------------------------------------------------
    ENGINEERING IDENTITY & LIFE CYCLE WORKFLOW
@@ -2197,8 +2243,8 @@ body::after {
   display: flex;
   flex-direction: column;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s ease;
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
   transform-style: preserve-3d;
 }
@@ -2217,8 +2263,15 @@ body::after {
   z-index: 5;
 }
 
-.card-corner-marker.top-left { top: 8px; left: 10px; }
-.card-corner-marker.top-right { top: 8px; right: 10px; }
+.card-corner-marker.top-left {
+  top: 8px;
+  left: 10px;
+}
+
+.card-corner-marker.top-right {
+  top: 8px;
+  right: 10px;
+}
 
 .project-image-wrap {
   position: relative;
@@ -2314,10 +2367,25 @@ body::after {
   z-index: 6;
 }
 
-.image-crosshair.top-left { top: 6px; left: 8px; }
-.image-crosshair.top-right { top: 6px; right: 8px; }
-.image-crosshair.bottom-left { bottom: 6px; left: 8px; }
-.image-crosshair.bottom-right { bottom: 6px; right: 8px; }
+.image-crosshair.top-left {
+  top: 6px;
+  left: 8px;
+}
+
+.image-crosshair.top-right {
+  top: 6px;
+  right: 8px;
+}
+
+.image-crosshair.bottom-left {
+  bottom: 6px;
+  left: 8px;
+}
+
+.image-crosshair.bottom-right {
+  bottom: 6px;
+  right: 8px;
+}
 
 .project-card-body {
   padding: 26px;
@@ -3405,8 +3473,15 @@ body::after {
 }
 
 @keyframes scaleUp {
-  from { transform: scale(0.94); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .lightbox-close-btn {
@@ -3575,6 +3650,7 @@ body::after {
   .lightbox-grid {
     grid-template-columns: 1fr;
   }
+
   .lightbox-img-frame {
     min-height: 320px;
     aspect-ratio: 1 / 1;
@@ -3682,25 +3758,32 @@ body::after {
     gap: 50px;
     padding-top: 140px;
   }
+
   .hero-telemetry-strip {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .scene-tracker-hud {
     display: none;
   }
+
   .identity-main-grid {
     grid-template-columns: 1fr;
   }
+
   .tech-matrix-layout {
     grid-template-columns: 1fr;
   }
+
   .tech-nodes-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .cinematic-contact {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .footer-main {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -3721,37 +3804,47 @@ body::after {
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   }
+
   .cinematic-nav-links.open {
     display: flex;
   }
+
   .mobile-menu-btn {
     display: block;
   }
+
   .hero-headline {
     font-size: 38px;
   }
+
   .hero-buttons {
     flex-direction: column;
     align-items: stretch;
   }
+
   .cinematic-cta-primary,
   .cinematic-cta-secondary {
     justify-content: center;
   }
+
   .mindset-flow-steps {
     grid-template-columns: 1fr;
   }
+
   .domains-stack-grid {
     grid-template-columns: 1fr;
   }
+
   .tech-nodes-grid {
     grid-template-columns: 1fr;
   }
+
   .footer-bottom {
     flex-direction: column;
     gap: 16px;
     text-align: center;
   }
+
   .curtain-controls-bar {
     top: 60px;
     left: 20px;
@@ -3760,6 +3853,11 @@ body::after {
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,4 +1,5 @@
 import { Sparkles, Check } from 'lucide-react'
+import { synth } from '../utils/audioSynth'
 
 export const PERSONALIZATION_PRESETS = [
   { id: 'all', label: 'All Perspectives', hint: 'Balanced AI engineering overview' },
@@ -26,7 +27,11 @@ export function PersonalizationBar({ currentPerspective, onSelectPerspective }) 
                 role="tab"
                 aria-selected={isSelected}
                 className={`personalization-pill ${isSelected ? 'active' : ''}`}
-                onClick={() => onSelectPerspective(preset.id)}
+                onMouseEnter={() => synth.playHover()}
+                onClick={() => {
+                  synth.playClick()
+                  onSelectPerspective(preset.id)
+                }}
                 title={preset.hint}
               >
                 {isSelected && <Check size={12} className="check-icon" />}

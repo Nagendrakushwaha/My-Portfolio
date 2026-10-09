@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowDownRight, ArrowUpRight, Beaker, Code2, Download, ExternalLink, FileText, Mail, Sparkles, Terminal } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Beaker, Code2, Download, ExternalLink, FileText, Mail, Sparkles, Terminal, Cpu, Database, Activity, User, Award, Maximize2, CheckCircle2, MapPin, X } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
 import { ProjectsPreview } from './Projects'
 import { InteractiveNeuralCanvas } from '../components/InteractiveNeuralCanvas'
@@ -11,6 +11,8 @@ import { EngineeringAnalytics } from '../components/EngineeringAnalytics'
 import { PortfolioAIAssistant } from '../components/PortfolioAIAssistant'
 import { EngineeringTimeline } from '../components/EngineeringTimeline'
 import { CodeRepositories } from '../components/CodeRepositories'
+import { SceneTracker } from '../components/SceneTracker'
+import { synth } from '../utils/audioSynth'
 
 function GithubIcon({ size = 15 }) {
   return (
@@ -45,93 +47,284 @@ function SectionTitle({ number, title, copy }) {
 
 export function Home({ onNavigate }) {
   const [currentPerspective, setCurrentPerspective] = useState('all')
+  const [heroVisualMode, setHeroVisualMode] = useState('portrait') // 'portrait' | 'neural'
+  const [portraitModalOpen, setPortraitModalOpen] = useState(false)
 
   return (
     <main className="ultra-home">
-      {/* 1. HERO SECTION WITH 3D NEURAL CANVAS */}
-      <section className="light-hero content-width" id="hero">
+      {/* Side HUD Scene Tracker */}
+      <SceneTracker />
+
+      {/* 1. CINEMATIC HERO SECTION WITH 3D NEURAL TENSOR CANVAS */}
+      <section className="cinematic-hero content-width" id="hero">
+        <span className="hero-corner-crosshair top-left">+</span>
+        <span className="hero-corner-crosshair top-right">+</span>
+
         <div className="hero-left">
           <div className="hero-telemetry-badge">
             <span className="live-dot" />
-            <span>AI / ML ENGINEER · DATA SCIENTIST · BHOPAL, INDIA</span>
+            <span>AI/ML ENGINEER · DATA SCIENTIST · BHOPAL, INDIA</span>
+            <span className="telemetry-coord">LAT: 23.2599° N · LON: 77.4126° E</span>
           </div>
 
-          <h1>
-            Building Intelligent Systems with
+          <h1 className="hero-headline">
+            Architecting
             <br />
-            <em>Machine Learning, Deep Learning</em>
+            <span className="headline-gradient">Intelligent Systems</span>
             <br />
-            &amp; Generative AI.
+            with Deep Learning &amp; GenAI.
           </h1>
 
           <p className="hero-copy">
-            I&apos;m <strong>Nagendra Kushwaha</strong>, a Computer Science Engineering student (7.85 CGPA) building verified, production-ready machine learning architectures. My work spans deep computer vision (EfficientNet 93.6% accuracy on RSNA), conversational AI (Banking77 88.72% test accuracy with RAG), and high-throughput network anomaly detection (2M+ CIC-IDS2017 rows).
+            I&apos;m <strong>Nagendra Kushwaha</strong>, a Computer Science Engineering student (7.85 CGPA at Sam Global University) engineering verified, production-ready machine learning architectures. My work spans deep computer vision (EfficientNet 93.6% accuracy on RSNA), conversational AI (Banking77 88.72% test accuracy with RAG), and high-throughput network anomaly detection (2M+ CIC-IDS2017 rows).
           </p>
+
+          {/* Academic Standing Orbit Pill */}
+          <div className="hero-benchmark-pills">
+            <div className="benchmark-pill" title="Sam Global University Academic Standing">
+              <span className="pill-dot gold" />
+              <strong>7.85 CGPA</strong>
+              <small>Sam Global Univ</small>
+            </div>
+          </div>
 
           <div className="hero-buttons">
             <a
-              className="accent-button"
+              className="cinematic-cta-primary"
               href="#projects"
               onClick={(e) => {
                 e.preventDefault()
+                synth.playClick()
                 onNavigate('/projects')
               }}
+              onMouseEnter={() => synth.playHover()}
+              data-cursor="EXPLORE"
             >
-              Explore Project Lab <ArrowUpRight size={16} />
+              <span>Explore Project Lab</span>
+              <ArrowUpRight size={16} />
             </a>
 
             <a
-              className="soft-button"
+              className="cinematic-cta-secondary"
               href="#mllab"
               onClick={(e) => {
                 e.preventDefault()
+                synth.playClick()
                 document.getElementById('mllab')?.scrollIntoView({ behavior: 'smooth' })
               }}
+              onMouseEnter={() => synth.playHover()}
+              data-cursor="RUN"
             >
-              <Beaker size={15} /> Try Live ML Demos
+              <Beaker size={15} />
+              <span>Launch Live ML Demos</span>
             </a>
 
             <a
-              className="text-button"
+              className="cinematic-cta-ghost"
               href={portfolio.personal.resumeUrl}
               target="_blank"
               rel="noreferrer"
+              onClick={() => synth.playClick()}
+              onMouseEnter={() => synth.playHover()}
+              data-cursor="PDF"
             >
-              <Download size={15} /> Resume PDF
+              <Download size={15} />
+              <span>Resume PDF</span>
             </a>
 
             <a
-              className="text-button"
+              className="cinematic-cta-ghost"
               href={portfolio.personal.github}
               target="_blank"
               rel="noreferrer"
+              onClick={() => synth.playClick()}
+              onMouseEnter={() => synth.playHover()}
+              data-cursor="CODE"
             >
-              <Code2 size={15} /> GitHub
+              <Code2 size={15} />
+              <span>GitHub</span>
             </a>
           </div>
 
           <div className="hero-telemetry-strip">
             <div className="telemetry-item">
-              <span>Primary Stack</span>
+              <span>Primary Core</span>
               <strong>Python · PyTorch · FastAPI</strong>
             </div>
             <div className="telemetry-item">
-              <span>Benchmark Max</span>
-              <strong>99.6% Acc (NIDS) · 93.6% (RSNA)</strong>
+              <span>Core Focus</span>
+              <strong>Computer Vision &amp; Generative AI</strong>
             </div>
             <div className="telemetry-item">
-              <span>Deployment</span>
+              <span>Production Serving</span>
               <strong>FastAPI + Render + Streamlit</strong>
+            </div>
+            <div className="telemetry-item">
+              <span>Latency Profile</span>
+              <strong>AMD Ryzen 5 CPU Tuned</strong>
             </div>
           </div>
         </div>
 
-        {/* Right 3D Visual Mesh with Integrated Profile */}
+        {/* Right Architectural Visual Showcase: Grand Portrait & 3D Neural Sphere */}
         <div className="hero-right-visual hero-visual-wrap">
-          <div className="profile-frame">
-            <img src="/profile.png" alt="Nagendra Kushwaha — AI/ML Engineer" />
+          {/* View Switcher Controls */}
+          <div className="hero-visual-switcher" role="tablist">
+            <button
+              type="button"
+              className={`hero-switch-btn ${heroVisualMode === 'portrait' ? 'active' : ''}`}
+              onClick={() => {
+                synth.playClick()
+                setHeroVisualMode('portrait')
+              }}
+              onMouseEnter={() => synth.playHover()}
+            >
+              <User size={13} />
+              <span>Architect Portrait</span>
+            </button>
+            <button
+              type="button"
+              className={`hero-switch-btn ${heroVisualMode === 'neural' ? 'active' : ''}`}
+              onClick={() => {
+                synth.playClick()
+                setHeroVisualMode('neural')
+              }}
+              onMouseEnter={() => synth.playHover()}
+            >
+              <Cpu size={13} />
+              <span>3D Neural Sphere</span>
+            </button>
           </div>
-          <InteractiveNeuralCanvas />
+
+          {heroVisualMode === 'portrait' ? (
+            /* Grand Architectural Hero Portrait Card */
+            <div className="hero-portrait-card">
+              <div
+                className="hero-portrait-media-wrap"
+                onClick={() => {
+                  synth.playClick()
+                  setPortraitModalOpen(true)
+                }}
+                title="Click to view full portrait"
+                data-cursor="VIEW"
+              >
+                <img
+                  src="/profile.png"
+                  alt="Nagendra Kushwaha — AI/ML Engineer & Data Scientist"
+                  className="hero-portrait-img-large"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none'
+                  }}
+                />
+              </div>
+
+              {/* Information Written Prominently Below the Image */}
+              <div className="hero-portrait-caption">
+                <div className="caption-header">
+                  <div className="caption-name-row">
+                    <h2 className="caption-name">Nagendra Kushwaha</h2>
+                    <span className="caption-verified-badge" title="Identity Verified">
+                      <CheckCircle2 size={13} />
+                      <span>Verified</span>
+                    </span>
+                  </div>
+                  <span className="caption-role">AI/ML ENGINEER &amp; DATA SCIENTIST</span>
+                  <span className="caption-subdiscipline">Generative AI · Deep Learning · Computer Vision</span>
+                </div>
+
+                {/* Academic Distinction Badge */}
+                <div className="caption-academic-badge">
+                  <span className="academic-icon">🎓</span>
+                  <div className="academic-meta">
+                    <strong>Sam Global University, Bhopal</strong>
+                    <div className="academic-subline">
+                      <span>B.Tech Computer Science Engineering</span>
+                      <span className="cgpa-highlight">7.85 / 10 CGPA</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Industry Internships & Mentorship */}
+                <div className="caption-experience-strip">
+                  <div className="caption-exp-item">
+                    <span className="exp-label">Internship</span>
+                    <strong>UptoSkill</strong>
+                    <small>Data Analytics &amp; EDA</small>
+                  </div>
+                  <div className="caption-exp-item">
+                    <span className="exp-label">Mentorship</span>
+                    <strong>Internship Catalyst</strong>
+                    <small>Data Science &amp; ML</small>
+                  </div>
+                </div>
+
+                {/* Engineering Bio / Philosophy */}
+                <p className="caption-credo-text">
+                  &ldquo;I engineer real, production-ready AI systems with mathematically grounded foundations, explainable computer vision (Grad-CAM), and low-latency API deployment.&rdquo;
+                </p>
+
+                {/* Quick Action Links directly below image */}
+                <div className="caption-actions-row">
+                  <a
+                    href={portfolio.personal.resumeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="caption-action-btn primary"
+                    onClick={() => synth.playClick()}
+                    onMouseEnter={() => synth.playHover()}
+                  >
+                    <Download size={12} />
+                    <span>Resume PDF</span>
+                  </a>
+                  <a
+                    href={portfolio.personal.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="caption-action-btn"
+                    onClick={() => synth.playClick()}
+                    onMouseEnter={() => synth.playHover()}
+                  >
+                    <GithubIcon size={12} />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href={portfolio.personal.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="caption-action-btn"
+                    onClick={() => synth.playClick()}
+                    onMouseEnter={() => synth.playHover()}
+                  >
+                    <LinkedinIcon size={12} />
+                    <span>LinkedIn</span>
+                  </a>
+                  <button
+                    type="button"
+                    className="caption-action-btn ghost"
+                    onClick={() => {
+                      synth.playClick()
+                      setPortraitModalOpen(true)
+                    }}
+                    onMouseEnter={() => synth.playHover()}
+                  >
+                    <Maximize2 size={12} />
+                    <span>HD View</span>
+                  </button>
+                </div>
+
+                {/* Availability status */}
+                <div className="caption-footer-status">
+                  <span className="live-dot" />
+                  <span>Available for Full-Time Roles &middot; Bhopal, India</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* 3D Neural Tensor Canvas */
+            <div className="hero-neural-wrap">
+              <InteractiveNeuralCanvas />
+            </div>
+          )}
         </div>
       </section>
 
@@ -139,7 +332,10 @@ export function Home({ onNavigate }) {
       <section className="personalization-section content-width">
         <PersonalizationBar
           currentPerspective={currentPerspective}
-          onSelectPerspective={setCurrentPerspective}
+          onSelectPerspective={(val) => {
+            synth.playClick()
+            setCurrentPerspective(val)
+          }}
         />
       </section>
 
@@ -155,16 +351,27 @@ export function Home({ onNavigate }) {
           <SectionTitle
             number="04"
             title="Featured Engineering Systems."
-            copy="Flagship implementations across Generative AI, Medical Computer Vision, Document AI, and Intrusion Detection."
+            copy="Flagship implementations across Generative AI, Medical Computer Vision, Document AI, and High-Throughput Intrusion Detection."
           />
-          <button className="text-button" onClick={() => onNavigate('/projects')}>
-            View All 9 Projects <ArrowUpRight size={16} />
+          <button
+            className="cinematic-view-all-btn"
+            onClick={() => {
+              synth.playClick()
+              onNavigate('/projects')
+            }}
+            onMouseEnter={() => synth.playHover()}
+          >
+            <span>View All 9 Projects</span>
+            <ArrowUpRight size={15} />
           </button>
         </div>
 
         <ProjectsPreview
           filterPersona={currentPerspective}
-          onDetails={(project) => onNavigate(`/projects/${project.id}`)}
+          onDetails={(project) => {
+            synth.playClick()
+            onNavigate(`/projects/${project.id}`)
+          }}
         />
       </section>
 
@@ -175,7 +382,9 @@ export function Home({ onNavigate }) {
       <EngineeringAnalytics />
 
       {/* 8. AI ASSISTANT: ASK MY PORTFOLIO */}
-      <PortfolioAIAssistant onNavigate={onNavigate} />
+      <section id="ask-ai">
+        <PortfolioAIAssistant onNavigate={onNavigate} />
+      </section>
 
       {/* 9. ENGINEERING TIMELINE & VERIFIED MILESTONES */}
       <EngineeringTimeline />
@@ -184,44 +393,232 @@ export function Home({ onNavigate }) {
       <CodeRepositories />
 
       {/* 11. CONTACT & COLLABORATION CTA */}
-      <section className="light-contact content-width" id="contact">
-        <div>
+      <section className="cinematic-contact content-width" id="contact">
+        <span className="section-crosshair top-left">+</span>
+        <span className="section-crosshair top-right">+</span>
+
+        <div className="contact-editorial">
           <p className="overline">
-            <Sparkles size={12} className="orange-dot-icon" /> 11 / Contact &amp; Opportunities
+            <Sparkles size={13} className="orange-dot-icon" /> 11 // Collaboration &amp; Opportunities
           </p>
           <h2>
-            Let&apos;s build
+            Let&apos;s engineer
             <br />
-            <em>intelligent systems.</em>
+            <span className="headline-gradient">intelligent systems.</span>
           </h2>
           <p className="contact-copy">
-            Available for AI/ML Engineer roles, Data Science opportunities, research collaborations, and production intelligent software projects.
+            Available for AI/ML Engineer roles, Data Science opportunities, research collaborations, and production intelligent software initiatives. Grounded in verified datasets and sound ML engineering discipline.
           </p>
           <div className="contact-quick-badges">
-            <span>Bhopal, Madhya Pradesh, India</span>
-            <span>Open to Remote &amp; On-Site</span>
+            <span>📍 Bhopal, Madhya Pradesh, India</span>
+            <span>⚡ Open to Remote &amp; On-Site</span>
+            <span>🎓 Sam Global University (7.85 CGPA)</span>
+          </div>
+
+          {/* Executive Portrait Collaboration Plaque */}
+          <div
+            className="contact-executive-plinth"
+            onClick={() => {
+              synth.playClick()
+              setPortraitModalOpen(true)
+            }}
+            title="Click to view full architectural dossier"
+            data-cursor="EXPAND"
+          >
+            <div className="plinth-avatar-wrap">
+              <img
+                src="/profile.png"
+                alt="Nagendra Kushwaha — AI/ML Engineer"
+                className="plinth-avatar-img"
+              />
+              <span className="plinth-live-badge" />
+            </div>
+            <div className="plinth-details">
+              <div className="plinth-header-row">
+                <strong>Nagendra Kushwaha</strong>
+                <span className="plinth-role-tag">AI/ML ARCHITECT</span>
+              </div>
+              <small className="plinth-academic">Sam Global University, Bhopal · B.Tech CSE (7.85 CGPA)</small>
+              <p className="plinth-quote">
+                &ldquo;Ready to engineer production deep learning systems, explainable medical vision, and low-latency LLM/RAG pipelines for your team.&rdquo;
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="contact-panel">
-          <a href={`mailto:${portfolio.personal.email}`}>
-            <span className="contact-label"><Mail size={15} /> Direct Email</span>
-            <strong>{portfolio.personal.email} <ArrowUpRight size={16} /></strong>
+        <div className="contact-panel-cinematic">
+          <a
+            href={`mailto:${portfolio.personal.email}`}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => synth.playClick()}
+          >
+            <div className="contact-link-left">
+              <Mail size={16} className="contact-icon" />
+              <div>
+                <span className="contact-link-type">Direct Email</span>
+                <strong>{portfolio.personal.email}</strong>
+              </div>
+            </div>
+            <ArrowUpRight size={16} />
           </a>
-          <a href={portfolio.personal.github} target="_blank" rel="noreferrer">
-            <span className="contact-label"><GithubIcon size={15} /> GitHub Profile</span>
-            <strong>github.com/Nagendrakushwaha <ArrowUpRight size={16} /></strong>
+
+          <a
+            href={portfolio.personal.github}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => synth.playClick()}
+          >
+            <div className="contact-link-left">
+              <GithubIcon size={16} />
+              <div>
+                <span className="contact-link-type">GitHub Profile</span>
+                <strong>github.com/Nagendrakushwaha</strong>
+              </div>
+            </div>
+            <ArrowUpRight size={16} />
           </a>
-          <a href={portfolio.personal.linkedin} target="_blank" rel="noreferrer">
-            <span className="contact-label"><LinkedinIcon size={15} /> LinkedIn</span>
-            <strong>Nagendra Kushwaha <ArrowUpRight size={16} /></strong>
+
+          <a
+            href={portfolio.personal.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => synth.playClick()}
+          >
+            <div className="contact-link-left">
+              <LinkedinIcon size={16} />
+              <div>
+                <span className="contact-link-type">LinkedIn Connection</span>
+                <strong>Nagendra Kushwaha</strong>
+              </div>
+            </div>
+            <ArrowUpRight size={16} />
           </a>
-          <a href={portfolio.personal.resumeUrl} target="_blank" rel="noreferrer">
-            <span className="contact-label"><FileText size={15} /> Resume PDF</span>
-            <strong>Download AI/ML Resume <ArrowUpRight size={16} /></strong>
+
+          <a
+            href={portfolio.personal.resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => synth.playClick()}
+          >
+            <div className="contact-link-left">
+              <FileText size={16} className="contact-icon" />
+              <div>
+                <span className="contact-link-type">Curriculum Vitae</span>
+                <strong>Download AI/ML Resume (PDF)</strong>
+              </div>
+            </div>
+            <ArrowUpRight size={16} />
           </a>
         </div>
       </section>
+
+      {/* 12. CINEMATIC HD PORTRAIT LIGHTBOX MODAL */}
+      {portraitModalOpen && (
+        <div
+          className="portrait-lightbox-overlay"
+          onClick={() => {
+            synth.playClick()
+            setPortraitModalOpen(false)
+          }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="portrait-lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="lightbox-close-btn"
+              onClick={() => {
+                synth.playClick()
+                setPortraitModalOpen(false)
+              }}
+              aria-label="Close HD Portrait View"
+            >
+              <X size={18} />
+            </button>
+
+            <div className="lightbox-grid">
+              <div className="lightbox-media-col">
+                <div className="lightbox-img-frame">
+                  <img
+                    src="/profile.png"
+                    alt="Nagendra Kushwaha — AI/ML Engineer & Data Scientist"
+                    className="lightbox-img"
+                  />
+                </div>
+              </div>
+
+              <div className="lightbox-dossier-col">
+                <span className="overline">Architectural Dossier</span>
+                <h2 className="lightbox-name">Nagendra Kushwaha</h2>
+                <p className="lightbox-title">AI/ML ENGINEER &amp; DATA SCIENTIST</p>
+                <p className="lightbox-location">
+                  <MapPin size={13} /> Bhopal, Madhya Pradesh, India
+                </p>
+
+                <div className="lightbox-section">
+                  <h4>Academic Distinction</h4>
+                  <div className="lightbox-badge-card">
+                    <span className="academic-icon">🎓</span>
+                    <div>
+                      <strong>Sam Global University, Bhopal</strong>
+                      <p>B.Tech Computer Science &amp; Engineering &middot; <b>7.85 / 10 CGPA</b></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lightbox-section">
+                  <h4>Verified Experience &amp; Mentorship</h4>
+                  <ul className="lightbox-exp-list">
+                    <li>
+                      <strong>UptoSkill</strong> &mdash; Data Analytics Intern (E-commerce EDA, Customer Segmentation &amp; Retention Analytics)
+                    </li>
+                    <li>
+                      <strong>Internship Catalyst</strong> &mdash; Data Science Mentor (Practical Modeling, Loss Calibration, Student Mentorship)
+                    </li>
+                    <li>
+                      <strong>BCG Virtual Experience</strong> &mdash; Business Strategy, Data Analysis &amp; Strategic Problem Solving
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="lightbox-section">
+                  <h4>Engineering Philosophy</h4>
+                  <p className="lightbox-bio-text">
+                    &ldquo;My focus is not superficial model wrapper calls, but mastering the complete engineering lifecycle: raw data preparation, loss calibration, explainability via Grad-CAM, safety guardrails (prompt injection &amp; PII masking), and production-grade FastAPI serving on edge CPUs.&rdquo;
+                  </p>
+                </div>
+
+                <div className="lightbox-actions-row">
+                  <a
+                    href={portfolio.personal.resumeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cinematic-cta-primary"
+                    onClick={() => synth.playClick()}
+                  >
+                    <Download size={14} />
+                    <span>Download AI/ML Resume (PDF)</span>
+                  </a>
+                  <a
+                    href={`mailto:${portfolio.personal.email}`}
+                    className="cinematic-cta-secondary"
+                    onClick={() => synth.playClick()}
+                  >
+                    <Mail size={14} />
+                    <span>Contact Directly</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

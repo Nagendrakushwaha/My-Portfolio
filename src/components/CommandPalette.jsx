@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowRight, Beaker, Code2, ExternalLink, FileText, LayoutGrid, Sparkles, X, Search } from 'lucide-react'
 import { projects } from '../data/projects'
 import { portfolio } from '../data/portfolio'
+import { synth } from '../utils/audioSynth'
 
 export function CommandPalette({ isOpen, onClose, onNavigate }) {
   const [query, setQuery] = useState('')
@@ -125,6 +126,7 @@ export function CommandPalette({ isOpen, onClose, onNavigate }) {
                   key={`${item.type}-${item.path}-${item.title}`}
                   className={`command-item ${isSelected ? 'selected' : ''}`}
                   onClick={() => {
+                    synth.playClick()
                     onNavigate(item.path)
                     onClose()
                   }}

@@ -4,6 +4,7 @@ import { projects } from '../data/projects'
 import { ProjectImage } from '../components/ProjectImage'
 import { MetricCard } from '../components/MetricCard'
 import { PerformanceChart } from '../components/PerformanceChart'
+import { synth } from '../utils/audioSynth'
 
 const metricLabels = {
   accuracy: ['Accuracy', '%'],
@@ -111,7 +112,14 @@ export function ProjectCaseStudy({ projectId, onNavigate }) {
     <main className="case-study">
       {/* Hero Header */}
       <section className="case-hero content-width">
-        <button className="back-link" onClick={() => onNavigate('/projects')}>
+        <button
+          className="back-link"
+          onMouseEnter={() => synth.playHover()}
+          onClick={() => {
+            synth.playClick()
+            onNavigate('/projects')
+          }}
+        >
           <ArrowLeft size={16} /> Back to Project Lab
         </button>
 

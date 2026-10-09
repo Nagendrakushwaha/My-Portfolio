@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { ArrowUpRight, Filter, Search, SlidersHorizontal, Sparkles, X } from 'lucide-react'
 import { projectCategories, projects } from '../data/projects'
 import { ProjectCard } from '../components/ProjectCard'
+import { synth } from '../utils/audioSynth'
 
 const EXTENDED_CATEGORIES = [
   'All',
@@ -115,7 +116,11 @@ export function Projects() {
               <button
                 className={`category-pill ${filter === category ? 'selected-tab' : ''}`}
                 key={category}
-                onClick={() => setFilter(category)}
+                onMouseEnter={() => synth.playHover()}
+                onClick={() => {
+                  synth.playClick()
+                  setFilter(category)
+                }}
               >
                 {category}
               </button>

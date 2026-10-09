@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Bot, Send, Sparkles, User, ExternalLink, ArrowRight, CornerDownRight } from 'lucide-react'
 import { projects } from '../data/projects'
 import { portfolio } from '../data/portfolio'
+import { synth } from '../utils/audioSynth'
 
 const SUGGESTED_PROMPTS = [
   'Which projects use Deep Learning?',
@@ -193,7 +194,11 @@ export function PortfolioAIAssistant({ onNavigate }) {
               <button
                 key={prompt}
                 className="prompt-chip"
-                onClick={() => handleSend(prompt)}
+                onMouseEnter={() => synth.playHover()}
+                onClick={() => {
+                  synth.playClick()
+                  handleSend(prompt)
+                }}
                 disabled={isThinking}
               >
                 {prompt}

@@ -1,7 +1,27 @@
-import { ArrowUpRight, ExternalLink, Globe, Shield, Sparkles } from 'lucide-react'
+import { useRef } from 'react'
+import { ArrowUpRight, ExternalLink, Globe } from 'lucide-react'
 import { ProjectImage } from './ProjectImage'
+import { synth } from '../utils/audioSynth'
 
 export function ProjectCard({ project, onDetails }) {
+  const cardRef = useRef(null)
+
+  // 3D Tilt on hover for cinematic depth
+  const handleMouseMove = (e) => {
+    if (!cardRef.current || window.innerWidth < 1024) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left - rect.width / 2
+    const y = e.clientY - rect.top - rect.height / 2
+    const tiltX = (y / (rect.height / 2)) * -6
+    const tiltY = (x / (rect.width / 2)) * 6
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`
+  }
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)'
+  }
+
   // Derive verified headline metric
   let headlineMetric = null
   if (project.id === 'shopease') {
@@ -25,8 +45,19 @@ export function ProjectCard({ project, onDetails }) {
     (project.statistics?.bestModel ? project.statistics.bestModel.split('(')[0].trim() : null)
 
   return (
-    <article className={`light-project-card ${project.featured ? 'featured-card' : ''}`}>
-      <ProjectImage project={project} />
+    <article
+      ref={cardRef}
+      className={`cinematic-project-card ${project.featured ? 'featured-card' : ''}`}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => synth.playHover()}
+      data-cursor="EXPLORE"
+    >
+      {/* Corner crosshairs */}
+      <span className="card-corner-marker top-left">+</span>
+      <span className="card-corner-marker top-right">+</span>
+
+      <ProjectImage project={project} large={project.featured} />
 
       <div className="project-card-body">
         {/* Card Header Meta */}
@@ -38,6 +69,7 @@ export function ProjectCard({ project, onDetails }) {
         {/* Status & Headline Metric Row */}
         <div className="card-badge-row">
           <span className={`status-pill ${project.status === 'Production Ready' ? 'success' : 'neutral'}`}>
+            <span className="live-dot" />
             {project.status || 'Project'}
           </span>
           {headlineMetric ? (
@@ -50,7 +82,7 @@ export function ProjectCard({ project, onDetails }) {
         </div>
 
         <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        <p className="card-desc-text">{project.description}</p>
 
         {/* Technical Architecture Specs */}
         <div className="card-specs">
@@ -69,26 +101,33 @@ export function ProjectCard({ project, onDetails }) {
         </div>
 
         {/* Technologies */}
-        <div className="light-badges">
-          {(project.technologies || []).slice(0, 5).map((technology) => (
+        <div className="cinematic-badges">
+          {(project.technologies || []).slice(0, 6).map((technology) => (
             <span key={technology}>{technology}</span>
           ))}
-          {(project.technologies || []).length > 5 && (
-            <span className="more-tech">+{(project.technologies || []).length - 5}</span>
+          {(project.technologies || []).length > 6 && (
+            <span className="more-tech">+{(project.technologies || []).length - 6}</span>
           )}
         </div>
 
         {/* Research Disclaimer if medical */}
         {project.id === 'smartmed-vision' && (
           <div className="card-disclaimer">
-            <small>Educational &amp; Research only · Not for clinical diagnosis</small>
+            <small>⚠️ Educational &amp; Research only · Not for clinical diagnosis</small>
           </div>
         )}
 
         {/* Action Buttons */}
         <div className="project-card-actions">
-          <button className="outline-button" onClick={() => onDetails(project)}>
-            View Case Study <ArrowUpRight size={15} />
+          <button
+            type="button"
+            className="cinematic-primary-btn"
+            onClick={() => {
+              synth.playClick()
+              onDetails(project)
+            }}
+          >
+            Case Study Analysis <ArrowUpRight size={14} />
           </button>
 
           <div className="card-external-links">
@@ -98,10 +137,11 @@ export function ProjectCard({ project, onDetails }) {
                 href={project.liveDemo}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => synth.playClick()}
                 aria-label={`Open ${project.title} Live Demo`}
-                title="Open Live Web Application"
+                title="Launch Live Production Web Application"
               >
-                <Globe size={14} /> Live Demo
+                <Globe size={13} /> Live App
               </a>
             )}
             {project.github && (
@@ -110,10 +150,11 @@ export function ProjectCard({ project, onDetails }) {
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => synth.playClick()}
                 aria-label={`Open ${project.title} on GitHub`}
                 title="View GitHub Repository"
               >
-                <ExternalLink size={15} />
+                <ExternalLink size={14} />
               </a>
             )}
           </div>

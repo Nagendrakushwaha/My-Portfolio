@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Activity, BarChart3, Database, Layers, PieChart, ShieldCheck } from 'lucide-react'
 import { projects } from '../data/projects'
+import { synth } from '../utils/audioSynth'
 
 export function EngineeringAnalytics() {
   const [activeMetricTab, setActiveMetricTab] = useState('distribution')
@@ -100,21 +101,33 @@ export function EngineeringAnalytics() {
         <div className="dashboard-nav-tabs">
           <button
             className={`dash-tab ${activeMetricTab === 'distribution' ? 'active' : ''}`}
-            onClick={() => setActiveMetricTab('distribution')}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => {
+              synth.playClick()
+              setActiveMetricTab('distribution')
+            }}
           >
             <PieChart size={15} />
             <span>Domain Distribution</span>
           </button>
           <button
             className={`dash-tab ${activeMetricTab === 'tech' ? 'active' : ''}`}
-            onClick={() => setActiveMetricTab('tech')}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => {
+              synth.playClick()
+              setActiveMetricTab('tech')
+            }}
           >
             <Layers size={15} />
             <span>Tech Stack Adoption</span>
           </button>
           <button
             className={`dash-tab ${activeMetricTab === 'benchmarks' ? 'active' : ''}`}
-            onClick={() => setActiveMetricTab('benchmarks')}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => {
+              synth.playClick()
+              setActiveMetricTab('benchmarks')
+            }}
           >
             <Activity size={15} />
             <span>Evaluation Benchmarks</span>

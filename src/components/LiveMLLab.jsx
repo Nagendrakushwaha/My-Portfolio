@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { ArrowRight, CheckCircle2, ExternalLink, Play, RefreshCw, ShieldAlert, Sparkles, Terminal, Activity, Eye } from 'lucide-react'
-import { projects } from '../data/projects'
+import { ExternalLink, Play, RefreshCw, Activity, Eye } from 'lucide-react'
+import { synth } from '../utils/audioSynth'
 
 export function LiveMLLab({ onNavigate }) {
   const [activeTab, setActiveTab] = useState('shopease')
@@ -72,7 +72,11 @@ export function LiveMLLab({ onNavigate }) {
         <div className="ml-lab-tabs">
           <button
             className={`lab-tab ${activeTab === 'shopease' ? 'active' : ''}`}
-            onClick={() => setActiveTab('shopease')}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => {
+              synth.playClick()
+              setActiveTab('shopease')
+            }}
           >
             <span className="live-indicator" />
             <strong>ShopEase Conversational AI</strong>
@@ -80,7 +84,11 @@ export function LiveMLLab({ onNavigate }) {
           </button>
           <button
             className={`lab-tab ${activeTab === 'nids' ? 'active' : ''}`}
-            onClick={() => setActiveTab('nids')}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => {
+              synth.playClick()
+              setActiveTab('nids')
+            }}
           >
             <Activity size={16} />
             <strong>NIDS Intrusion Detector</strong>
@@ -88,7 +96,11 @@ export function LiveMLLab({ onNavigate }) {
           </button>
           <button
             className={`lab-tab ${activeTab === 'vision' ? 'active' : ''}`}
-            onClick={() => setActiveTab('vision')}
+            onMouseEnter={() => synth.playHover()}
+            onClick={() => {
+              synth.playClick()
+              setActiveTab('vision')
+            }}
           >
             <Eye size={16} />
             <strong>Vision &amp; Explainability</strong>

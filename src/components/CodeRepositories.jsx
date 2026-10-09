@@ -1,5 +1,6 @@
 import { Code2, ExternalLink, GitBranch, GitFork, Star } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
+import { synth } from '../utils/audioSynth'
 
 const REPOSITORIES = [
   {
@@ -106,7 +107,14 @@ export function CodeRepositories() {
                   <GitBranch size={12} /> {repo.branch}
                 </span>
               </div>
-              <a href={repo.url} target="_blank" rel="noreferrer" className="repo-link">
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noreferrer"
+                className="repo-link"
+                onMouseEnter={() => synth.playHover()}
+                onClick={() => synth.playClick()}
+              >
                 View Code <ExternalLink size={13} />
               </a>
             </div>
@@ -124,6 +132,8 @@ export function CodeRepositories() {
           target="_blank"
           rel="noreferrer"
           className="accent-button"
+          onMouseEnter={() => synth.playHover()}
+          onClick={() => synth.playClick()}
         >
           github.com/Nagendrakushwaha <ExternalLink size={15} />
         </a>
